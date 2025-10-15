@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+
+# Env files and secrets
+.env
+.env.*
+.secrets*
+*.secret
+
+# Editor/OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Project-specific ignores
+# Temporarily ignore email code while focusing on timestamp logger
+email_sender.py
+main.py
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
