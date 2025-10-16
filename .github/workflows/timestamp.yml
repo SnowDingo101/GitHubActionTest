@@ -1,4 +1,4 @@
-name: Append timestamp every 5 minutes
+name: Append timestamp daily at 4am Sydney time
 
 on:
   schedule:

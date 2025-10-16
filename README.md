@@ -70,7 +70,34 @@ python .\main.py
 - Ensure your Python version meets `pyproject.toml` (>= 3.13) or run with a compatible interpreter.
 - Do not commit real passwords to source control. Prefer environment variables, key vaults, or user secrets. The defaults are provided for convenience and local testing only.
 
-## Timestamp logger (for GitHub Actions)
+## Excel Report Workflow
+
+This project includes a complete automated Excel reporting workflow:
+
+### Scripts:
+1. **`update_excel.py`** - Adds timestamp, random number, and status to `data_report.xlsx`
+2. **`email_excel_contents.py`** - Reads the Excel file and emails a formatted report
+
+### Local testing:
+```powershell
+# Install dependencies
+pip install openpyxl
+
+# Update Excel file
+python update_excel.py
+
+# Send report (dry run)
+$env:DRY_RUN = "true"
+python email_excel_contents.py
+```
+
+### Automated workflow:
+`.github/workflows/excel-workflow.yml` runs daily at 4am Sydney time and:
+1. Updates the Excel file with new data
+2. Commits the updated file to the repository
+3. Emails the report contents to `EMoroney@foresightgroupau.com`
+
+The workflow requires the same Gmail secrets as the email workflow.
 
 This project also includes `timestamp_logger.py`, which appends the current UTC timestamp to `timestamps.log`.
 

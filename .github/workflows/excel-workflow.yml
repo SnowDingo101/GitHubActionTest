@@ -1,0 +1,54 @@
+name: Excel Report Workflow (Testing - Every 5 minutes)
+
+on:
+  schedule:
+    # Runs every 5 minutes for testing
+    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  excel-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openpyxl
+
+      - name: Update Excel file
+        run: |
+          python update_excel.py
+
+      - name: Commit updated Excel file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data_report.xlsx
+          if git diff --cached --quiet; then
+            echo "No changes to Excel file."
+          else
+            git commit -m "chore(ci): update Excel report data [skip ci]"
+            git push
+          fi
+
+      - name: Send Excel report email
+        env:
+          SMTP_HOST: smtp.gmail.com
+          SMTP_PORT: 587
+          SMTP_USERNAME: ${{ secrets.GMAIL_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.GMAIL_USERNAME }}
+          SMTP_USE_TLS: true
+        run: |
+          python email_excel_contents.py
