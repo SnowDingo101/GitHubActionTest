@@ -2,8 +2,8 @@ name: Excel Report Workflow (Testing - Every 5 minutes)
 
 on:
   schedule:
-    # Runs every 5 minutes for testing
-    - cron: '*/5 * * * *'
+    # Runs daily at 4am Sydney time (17:00 UTC, accounting for AEDT UTC+11)
+    - cron: '0 17 * * *'
   workflow_dispatch: {}
 
 permissions:
