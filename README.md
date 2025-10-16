@@ -99,4 +99,4 @@ The email functionality is now available! Set up GitHub secrets to enable automa
    - `GMAIL_USERNAME`: Your Gmail address (e.g., you@gmail.com)
    - `GMAIL_APP_PASSWORD`: Your Gmail app password (not your regular password)
 
-The email workflow at `.github/workflows/email.yml` runs every 5 minutes and sends "Hello, this is a test" to `EMoroney@foresightgroupau.com`.
+The email workflow at `.github/workflows/email.yml` runs daily at 4am Sydney time and sends "Hello, this is a test" to `EMoroney@foresightgroupau.com`.
