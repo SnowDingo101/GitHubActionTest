@@ -12,11 +12,6 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
-
-# Project-specific ignores
-# Temporarily ignore email code while focusing on timestamp logger
-email_sender.py
-main.py
 # Python-generated files
 __pycache__/
 *.py[oc]

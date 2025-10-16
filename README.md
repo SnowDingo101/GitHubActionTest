@@ -92,4 +92,11 @@ Notes:
 
 ### About email files
 
-`email_sender.py` and `main.py` are currently ignored in `.gitignore` to focus on the timestamp workflow. They remain in your working directory but won’t be added to future commits. Remove those lines from `.gitignore` whenever you want to include them again.
+The email functionality is now available! Set up GitHub secrets to enable automated email sending via GitHub Actions:
+
+1. Go to your repo → Settings → Secrets and variables → Actions
+2. Add these repository secrets:
+   - `GMAIL_USERNAME`: Your Gmail address (e.g., you@gmail.com)
+   - `GMAIL_APP_PASSWORD`: Your Gmail app password (not your regular password)
+
+The email workflow at `.github/workflows/email.yml` runs every 5 minutes and sends "Hello, this is a test" to `EMoroney@foresightgroupau.com`.
